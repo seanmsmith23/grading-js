@@ -9,6 +9,25 @@
 
 <script>
 
+
+    $.getJSON('http://localhost:63342/grading-js/data/grades.json', function(data) {
+        console.log(data);
+        var inDecline = 0;
+        var notInDecline = 0;
+        $.each(data, function(key, value){
+            var movements = GradeParser.getMovements(value);
+            if (GradeParser.isStudentInDecline(movements)){
+                inDecline += 1;
+            } else {
+                notInDecline += 1;
+            }
+        });
+        console.log("In Decline");
+        console.log(inDecline);
+        console.log("Not in Decline");
+        console.log(notInDecline);
+    });
+
   // load the data and run it through your grade parser
   // NOTE: you must run this via rubymine's open-in-browser, not by opening the file directly in chrome
 
